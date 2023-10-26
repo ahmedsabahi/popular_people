@@ -14,7 +14,8 @@ dependencies:
 
   # UI
   cached_network_image: ^3.3.0
-  
+  flutter_rating_bar: ^4.0.1
+
   # Remote API
   dio: ^5.3.3
   internet_connection_checker: ^1.0.0+1
@@ -29,6 +30,9 @@ dependencies:
 
   # Functional programming thingies
   dartz: ^0.10.1
+
+  # Other
+  intl: ^0.18.0
 
 
 dev_dependencies:

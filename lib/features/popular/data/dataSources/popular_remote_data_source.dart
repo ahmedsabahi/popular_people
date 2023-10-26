@@ -1,11 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pp/core/models/base_model.dart';
+import 'package:pp/features/popular/data/models/popular_details_model.dart';
 import 'package:pp/features/popular/data/models/popular_model.dart';
 import 'package:pp/features/popular/domain/useCases/popular.dart';
+import 'package:pp/features/popular/domain/useCases/popular_details.dart';
 import 'package:pp/services/dio_client.dart';
 
 abstract class PopularRemoteDataSource {
   Future<BaseModel<PopularModel>> fetchPopular(PopularParams params);
+  Future<PopularDetailsModel> fetchPopularDetails(PopularDetailsParams params);
 }
 
 final popularRemoteDataSourceImpl = Provider<PopularRemoteDataSourceImpl>(
@@ -29,5 +32,12 @@ class PopularRemoteDataSourceImpl implements PopularRemoteDataSource {
       response.data,
       (json) => PopularModel.fromJson(json as Map<String, dynamic>),
     );
+  }
+
+  @override
+  Future<PopularDetailsModel> fetchPopularDetails(
+      PopularDetailsParams params) async {
+    final response = await _dioClient.dio.get('/person/${params.personID}');
+    return PopularDetailsModel.fromJson(response.data as Map<String, dynamic>);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pp/features/popular/data/models/popular_model.dart';
+import 'package:pp/features/popular/presentation/screens/popular_details_screen.dart';
 import 'package:pp/utils/constants.dart';
 
 class PopularCardWidget extends StatelessWidget {
@@ -20,9 +21,11 @@ class PopularCardWidget extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(
-          //   builder: (context) => PersonDetailsScreen(widget.person),
-          // ));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => PopularDetailsScreen(popular),
+            ),
+          );
         },
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: Padding(

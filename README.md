@@ -45,7 +45,7 @@ To install this project, follow these steps:
 2. Change into the project directory:
    
     ```bash
-    cd your-repo
+    cd popular_people
    
 3. Install dependencies:
    

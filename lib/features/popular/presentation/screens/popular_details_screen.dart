@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pp/features/popular/data/models/popular_model.dart';
+import 'package:pp/features/popular/presentation/widgets/images_card_widget.dart';
 import 'package:pp/features/popular/presentation/widgets/movies_card_widget.dart';
 import 'package:pp/utils/constants.dart';
 
@@ -64,6 +65,7 @@ class PopularDetailsScreen extends StatelessWidget {
                 ),
                 MoviesCardWidget(popular),
               ],
+              ImagesCardWidget(popular),
             ],
           ),
         ),

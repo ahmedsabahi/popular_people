@@ -23,6 +23,7 @@ class DownloadPopularImageProvider extends BaseProvider<Uint8List> {
   Future<void> fetchDownloadPopularImage(String imaPath) async {
     setLoadingState();
     final isMediaLibraryGranted = await Permission.mediaLibrary.isGranted;
+    // androidInfo.version.sdkInt <= 32
     final isStorageGranted = await Permission.storage.isGranted;
     if (isStorageGranted || isMediaLibraryGranted) {
       final response = await _downloadPopularImage.call(imaPath);

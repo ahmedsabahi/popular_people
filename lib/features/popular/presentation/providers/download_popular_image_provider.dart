@@ -24,7 +24,7 @@ class DownloadPopularImageProvider extends BaseProvider<Uint8List> {
     setLoadingState();
     final isMediaLibraryGranted = await Permission.mediaLibrary.isGranted;
     final isStorageGranted = await Permission.storage.isGranted;
-    if (isStorageGranted && isMediaLibraryGranted) {
+    if (isStorageGranted || isMediaLibraryGranted) {
       final response = await _downloadPopularImage.call(imaPath);
       response.fold(
         (failure) => setErrorState(failure.message),

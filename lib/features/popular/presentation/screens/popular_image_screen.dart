@@ -29,22 +29,37 @@ class _PersonImageScreenState extends ConsumerState<PersonImageScreen> {
   Widget build(BuildContext context) {
     ref.listen(downloadPopularImageProvider, (previous, state) async {
       if (state is LoadingViewState) {
-        // UiHelper.showLoadingDialog(context);
+        showDialog(
+          context: context,
+          useRootNavigator: true,
+          barrierDismissible: false,
+          barrierColor: Colors.black12,
+          builder: (context) => AlertDialog(
+            title: const Center(child: CircularProgressIndicator.adaptive()),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+        );
+      }
+      if (state is ErrorViewState) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+          msg: state.errorMessage,
+          toastLength: Toast.LENGTH_LONG,
+          backgroundColor: Colors.redAccent,
+        );
       }
       if (state is LoadedViewState<Uint8List>) {
+        Navigator.of(context).pop();
         Fluttertoast.showToast(
           msg: 'You have successfully added to your gallery.',
           toastLength: Toast.LENGTH_LONG,
           backgroundColor: Colors.orange,
         );
         await ImageGallerySaver.saveImage(Uint8List.fromList(state.data));
-      }
-      if (state is ErrorViewState) {
-        Fluttertoast.showToast(
-          msg: state.errorMessage,
-          toastLength: Toast.LENGTH_LONG,
-          backgroundColor: Colors.redAccent,
-        );
       }
     });
     return Scaffold(

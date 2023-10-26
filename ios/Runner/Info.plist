@@ -29,7 +29,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Pp access your photo library to allow you to upload a new deposit</string>
+    <string>Pp access your photo library to allow you to download images</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -18,14 +18,20 @@ class DownloadPopularImageProvider extends BaseProvider<Uint8List> {
 
   DownloadPopularImageProvider(this._downloadPopularImage);
 
+  late PermissionStatus status;
+
   Future<void> fetchDownloadPopularImage(String imaPath) async {
-    if (await Permission.storage.request().isGranted) {
-      setLoadingState();
+    setLoadingState();
+    final isMediaLibraryGranted = await Permission.mediaLibrary.isGranted;
+    final isStorageGranted = await Permission.storage.isGranted;
+    if (isStorageGranted && isMediaLibraryGranted) {
       final response = await _downloadPopularImage.call(imaPath);
       response.fold(
         (failure) => setErrorState(failure.message),
         setLoadedState,
       );
+    } else {
+      setErrorState('Permission denied');
     }
   }
 }

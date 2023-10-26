@@ -69,7 +69,7 @@ class _PersonImageScreenState extends ConsumerState<PersonImageScreen> {
       body: LayoutBuilder(
         builder: (buildCtx, constraints) {
           return Hero(
-            tag: widget.popular.id ?? widget.popular.name.toString(),
+            tag: widget.filePath,
             child: CachedNetworkImage(
               height: constraints.maxHeight,
               fit: BoxFit.cover,
